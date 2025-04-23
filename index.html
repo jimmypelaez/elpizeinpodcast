@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elpizein Podcast - Enlaces</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Reset y Estilos Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #58d3a4;
+            color: #333;
+            overflow: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5vw 4vw;
+            background-color: #e0e5ec;
+            border-radius: 25px;
+            max-width: 90vw;
+            width: 360px;
+            opacity: 0;
+            animation: fadeInContainer 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            margin: 20px 0;
+        }
+
+        @keyframes fadeInContainer {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Estilos del Encabezado */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3vw;
+            text-align: center;
+            width: 100%;
+        }
+
+        .title-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3vw;
+            justify-content: center;
+        }
+
+        .header img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* Estilo del Reproductor de YouTube */
+        .youtube-player-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 4vw;
+        }
+
+        .youtube-label {
+            font-size: clamp(14px, 3vw, 18px);
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2vw;
+            opacity: 0;
+            animation: fadeInContainer 0.8s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .youtube-player {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 15px;
+            background-color: #e0e5ec;
+            box-shadow: -6px -6px 12px rgba(255, 255, 255, 0.8), 6px 6px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeInUpButton 0.6s ease-out forwards;
+            animation-delay: 0.3s;
+            overflow: hidden;
+        }
+
+        .youtube-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+            display: block;
+        }
+
+        /* Estilo del Reproductor de Audio - Nuevo Diseño */
+        .audio-player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 3vw;
+            background: linear-gradient(145deg, #a1d6e2, #58d3a4);
+            border-radius: 15px;
+            box-shadow: -6px -6px 12px rgba(255, 255, 255, 0.8), 6px 6px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 4vw;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeInUpButton 0.6s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            outline: none;
+            display: none;
+        }
+
+        .audio-controls {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 2vw;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+            width: 100%;
+        }
+
+        .progress-time {
+            font-size: clamp(10px, 2vw, 12px);
+            color: #333;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #e0e5ec;
+            border-radius: 3px;
+            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-bar::-webkit-progress-bar {
+            background: transparent;
+        }
+
+        .progress-bar::-webkit-progress-value {
+            background: #58d3a4;
+        }
+
+        .progress-bar::-moz-progress-bar {
+            background: #58d3a4;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3vw;
+        }
+
+        .control-button {
+            background: #e0e5ec;
+            border-radius: 50%;
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: -3px -3px 6px rgba(255, 255, 255, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.8), inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+            transform: scale(0.95);
+        }
+
+        .control-button i {
+            font-size: clamp(16px, 3vw, 20px);
+            color: #333;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        .volume-icon {
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: #333;
+        }
+
+        .volume-bar {
+            width: 80px;
+            height: 6px;
+            background: #e0e5ec;
+            border-radius: 3px;
+            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .volume-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #58d3a4;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .volume-bar::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: #58d3a4;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Estilo para el texto "Plataformas en las que nos encuentras" */
+        .platform-text {
+            font-size: clamp(14px, 3vw, 18px);
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            margin-bottom: 3vw;
+            margin-top: 2vw;
+            opacity: 0;
+            animation: fadeInContainer 0.8s ease-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        /* Estilos Botones Principales */
+        .main-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 3vw;
+        }
+
+        .link-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 3vw 4vw;
+            background-color: #e0e5ec;
+            border: none;
+            border-radius: 50px;
+            box-shadow: -6px -6px 12px rgba(255, 255, 255, 0.8), 6px 6px 12px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            cursor: pointer;
+            outline: none;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeInUpButton 0.6s ease-out forwards;
+        }
+
+        /* Animaciones escalonadas para botones */
+        .link-button:nth-child(1) { animation-delay: 0.5s; }
+        .link-button:nth-child(2) { animation-delay: 0.6s; }
+        .link-button:nth-child(3) { animation-delay: 0.7s; }
+        .link-button:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUpButton {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-button i, .link-button img {
+            font-size: clamp(24px, 5vw, 32px);
+            width: clamp(24px, 5vw, 32px);
+            height: clamp(24px, 5vw, 32px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Colores específicos de iconos */
+        .link-button.youtube i { color: #FF0000; }
+        .link-button.spotify i { color: #1DB954; }
+        .link-button.amazon img { 
+            filter: brightness(1);
+        }
+        .link-button.podcast i { color: #8f4fff; }
+
+        /* Estados Hover y Active para Botones */
+        .link-button:hover {
+            box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.7), inset 4px 4px 8px rgba(0, 0, 0, 0.15);
+            transform: scale(0.97);
+        }
+
+         .link-button:hover i, .link-button:hover img {
+             transform: scale(1.15);
+         }
+
+        .link-button:active {
+             box-shadow: inset -7px -7px 14px rgba(255, 255, 255, 0.9), inset 7px 7px 14px rgba(0, 0, 0, 0.25);
+             transform: scale(0.94);
+        }
+
+        /* Estilos Iconos del Pie de Página */
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5vw;
+            gap: 5vw;
+            opacity: 0;
+            animation: fadeInFooter 0.6s ease-out forwards;
+            animation-delay: 1.0s;
+        }
+
+         @keyframes fadeInFooter {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer-icons a {
+            font-size: clamp(20px, 4vw, 30px);
+            color: #555;
+            text-decoration: none;
+            padding: 2vw;
+            border-radius: 50%;
+            background-color: #e0e5ec;
+            transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
+            box-shadow: -3px -3px 6px rgba(255, 255, 255, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-icons a:hover {
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: inset -3px -3px 6px rgba(255, 255, 255, 0.9), inset 3px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Colores específicos hover iconos footer */
+        .footer-icons .fa-telegram:hover { color: #0088cc; }
+        .footer-icons .fa-instagram:hover { color: #E4405F; }
+        .footer-icons .fa-tiktok:hover { color: #000000; }
+
+        /* Estilo personalizado para el logo de Amazon Music */
+        .amazon-music-logo {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+        }
+        
+        .amazon-music-logo::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FF9900;
+            clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 0 100%);
+        }
+        
+        .amazon-music-logo::after {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width: 40%;
+            height: 40%;
+            background-color: #000;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 400px) {
+            .container {
+                padding: 6vw 5vw;
+                width: 95vw;
+            }
+
+            .header img {
+                max-width: 250px;
+            }
+
+            .youtube-label, .platform-text {
+                font-size: clamp(12px, 2.8vw, 16px);
+            }
+
+            .audio-player {
+                padding: 3vw;
+            }
+
+            .link-button {
+                padding: 3vw 4vw;
+            }
+
+            .footer-icons a {
+                width: clamp(35px, 7vw, 45px);
+                height: clamp(35px, 7vw, 45px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title-section">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUJOHZuQlJrjSs-z9g6RnAkUmCG4Fnb1jMKfNTgxoSACWhdt1s06VS-wMTzgjp1-xyn_bzcXeSzzpC6MrUqEfa2XVDC-R_1onm8Si-AL-UtXwlZuPKeMq1zyIT8-bTZpOt-lS43up8LW6gDaDk6Qjdg9wYCMemLmrqs0c8YQ62OBfBOo18bidC6-ULPp0/s417/2025-04-16_13-27.png" alt="Elpizein Podcast Logo">
+            </div>
+            <div class="youtube-player-container">
+                <div class="youtube-label">
+                    👀 ÚLTIMO EPISODIO 🎧
+                </div>
+                <div class="youtube-player">
+                    <iframe src="https://www.youtube.com/embed/biE8k9Ngq-M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="audio-player">
+                <audio id="audio" controls>
+                    <source src="https://anchor.fm/s/23a885f4/podcast/play/101574607/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-3-21%2F398758901-44100-2-99e6122e550a9.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+                <div class="audio-controls">
+                    <div class="progress-container">
+                        <span class="progress-time" id="current-time">0:00</span>
+                        <progress class="progress-bar" id="progress" value="0" max="100"></progress>
+                        <span class="progress-time" id="duration">0:00</span>
+                    </div>
+                    <div class="control-buttons">
+                        <div class="control-button" id="rewind">
+                            <i class="fas fa-backward"></i>
+                        </div>
+                        <div class="control-button" id="play-pause">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="control-button" id="forward">
+                            <i class="fas fa-forward"></i>
+                        </div>
+                    </div>
+                    <div class="volume-container">
+                        <i class="fas fa-volume-up volume-icon"></i>
+                        <input type="range" class="volume-bar" id="volume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="platform-text">
+            Plataformas en las que nos encuentras
+        </div>
+
+        <main class="main-links">
+             <a href="https://www.youtube.com/@elpzn.podcst/videos" target="_blank" class="link-button youtube" aria-label="Elpizein Podcast en YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://open.spotify.com/show/2dTWkbSxVWqsOcl1IW18v3" target="_blank" class="link-button spotify" aria-label="Elpizein Podcast en Spotify">
+                <i class="fa-brands fa-spotify"></i>
+            </a>
+             <a href="https://music.amazon.com/podcasts/d6f1ce3e-e84e-441d-8675-14ea94943af8/elpizeinpodcast-para-la-gloria-de-dios" target="_blank" class="link-button amazon" aria-label="Elpizein Podcast en Amazon Music">
+                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAxsPG_7Y6ohp-VaSrPswOH3Zd72x4HfSPNKc42slPTyHOqandZBmJJyjFlvaYSPUcawdfmdTBMotBd9yky-uy7_XjVzrfNqglfQxRH5MC81x3fCaB_SHCf8MlrGxph5NVPkzWXaGOBmVJMNkt78qweysrhDgPGvOP8ErBxQ6ECY2Ul2SrJngazoZ0CPI/s96/amazon_music_macos_bigsur_icon_190403%20(1).png" alt="Amazon Music">
+             </a>
+             <a href="https://podcasts.apple.com/co/podcast/elpizeinpodcast-para-la-gloria-de-dios/id1518873413" target="_blank" class="link-button podcast" aria-label="Elpizein Podcast en Apple Podcasts">
+                 <i class="fa-solid fa-podcast"></i>
+             </a>
+        </main>
+
+        <footer class="footer-icons">
+            <a href="https://t.me/elpizeinaudios" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://www.instagram.com/elpzn.podcst" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@elpzn.pod" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Página de enlaces Elpizein Podcast cargada!");
+
+            const audio = document.getElementById('audio');
+            const playPauseBtn = document.getElementById('play-pause');
+            const playPauseIcon = playPauseBtn.querySelector('i');
+            const progress = document.getElementById('progress');
+            const currentTimeDisplay = document.getElementById('current-time');
+            const durationDisplay = document.getElementById('duration');
+            const rewindBtn = document.getElementById('rewind');
+            const forwardBtn = document.getElementById('forward');
+            const volumeBar = document.getElementById('volume');
+
+            // Actualizar duración cuando el audio esté listo
+            audio.addEventListener('loadedmetadata', () => {
+                const duration = audio.duration;
+                durationDisplay.textContent = formatTime(duration);
+            });
+
+            // Actualizar progreso y tiempo actual
+            audio.addEventListener('timeupdate', () => {
+                const currentTime = audio.currentTime;
+                const duration = audio.duration;
+                const progressPercent = (currentTime / duration) * 100;
+                progress.value = progressPercent;
+                currentTimeDisplay.textContent = formatTime(currentTime);
+            });
+
+            // Control de reproducción/pausa
+            playPauseBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseIcon.classList.remove('fa-play');
+                    playPauseIcon.classList.add('fa-pause');
+                } else {
+                    audio.pause();
+                    playPauseIcon.classList.remove('fa-pause');
+                    playPauseIcon.classList.add('fa-play');
+                }
+            });
+
+            // Avanzar y retroceder 10 segundos
+            rewindBtn.addEventListener('click', () => {
+                audio.currentTime = Math.max(0, audio.currentTime - 10);
+            });
+
+            forwardBtn.addEventListener('click', () => {
+                audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+            });
+
+            // Control de volumen
+            volumeBar.addEventListener('input', () => {
+                audio.volume = volumeBar.value;
+            });
+
+            // Formatear tiempo en MM:SS
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+        });
+    </script>
+</body>
+</html>
